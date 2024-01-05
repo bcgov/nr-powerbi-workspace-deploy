@@ -1,0 +1,6 @@
+NRS_Analytics_DEV:
+  workspace_id: 'c7ef19d0-b230-4b9e-89e2-984fccc75198'
+NRS_Analytics_TEST:
+  workspace_id:  '5b2835d9-510c-495c-b915-b24c52aacd05'  
+NRS_Analytics_PROD:
+  workspace_id:  '3c32cb15-e9fd-4a2b-9ded-a58ab3f5b637'
