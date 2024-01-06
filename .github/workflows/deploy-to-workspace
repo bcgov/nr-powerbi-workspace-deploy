@@ -1,28 +1,18 @@
 name: Deploy to workspace
-
-on: 
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+on: [push]
 jobs:
-  
   Deploy-Asset:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v19
         with:
           separator: ","
           quotepath: false
-    
       - name: Power BI Workspace Deploy
         uses: nathangiusti/Power-BI-Workspace-Deploy@v1.2
         with:
