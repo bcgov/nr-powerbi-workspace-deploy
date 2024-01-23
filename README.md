@@ -8,6 +8,6 @@ Process Overview:
 
 Pending feature: Manage access using a users.txt file 
 
-Limitation: This workflow is suitable for Power BI .pbix files that are up 10 GB in size. 
+Limitation: Based on the Power BI API documentation, this workflow should be suitable for Power BI .pbix files that are up 10 GB in size. However, large files have not been fully tested and may cause issues. 
 
 Action documentation: https://github.com/marketplace/actions/power-bi-pipeline-deploy
