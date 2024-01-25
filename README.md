@@ -8,6 +8,7 @@ This repository automates publishing Power BI .pbix files to the NRS Analytics P
 
 ## Pending Features: 
 - Manage report access using a users.txt file
+- Support for S3 secure storage for .pbix files
 - File structure: {workspace}/{report name}/[.pbix file and users.txt file]
 
 ## Limitations: 
