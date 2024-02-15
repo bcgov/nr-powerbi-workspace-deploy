@@ -12,7 +12,8 @@ This repository automates publishing Power BI .pbix files to the NRS Analytics P
 - File structure: {workspace}/{report name}/[.pbix file and users.txt file]
 
 ## Limitations: 
-Based on the Power BI API documentation, this workflow should be suitable for Power BI .pbix files that are up 10 GB in size. However, large files have not been fully tested and may cause issues. 
+- **Do not publish .pbix files here unless the  Power BI report is public-facing** Support for secure .pbix file storage is coming soon. 
+- Based on the Power BI API documentation, this workflow should be suitable for Power BI .pbix files that are up 10 GB in size. However, large files have not been fully tested and may cause issues. 
 
 ## Action Documentation: 
 (https://github.com/marketplace/actions/power-bi-pipeline-deploy)
