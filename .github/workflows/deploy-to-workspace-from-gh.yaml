@@ -1,7 +1,10 @@
-name: Deploy to workspace
+name: GitHub to Power BI Workspace
+
 on: 
-  push:
-    branches: [ "main" ]
+    push:
+      branches: [ "main" ]
+    pull_request:
+      branches: [ "main" ]
 
 jobs:
   build:
@@ -16,7 +19,7 @@ jobs:
         with:
           separator: ","
           quotepath: false
-      - name: Power BI Workspace Deploy
+      - name: GitHub Power BI Workspace
         uses: nathangiusti/Power-BI-Workspace-Deploy@v1.2
         with:
           files: ${{ steps.changed-files.outputs.all_modified_files }}
