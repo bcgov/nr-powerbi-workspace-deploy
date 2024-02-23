@@ -2,7 +2,7 @@ name: S3 to Power BI Workspace
 
 on: 
   schedule:
-  - cron: 0 6 * * *
+  - cron: 0 * * * *
   push:
     branches: [ "main" ]
 
@@ -16,7 +16,7 @@ jobs:
         id: nr-powerbi-workspace-deploy
         uses: bcgov/nr-powerbi-workspace-deploy@main
         env:
-          PBI_FILE: 'Deployment Example.pbix'
+          PBI_FILE: 'deployment example.pbix'
           WORKSPACE_ENV: 'dev'
           DOMAIN: 'df'
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
@@ -24,6 +24,3 @@ jobs:
           OBJ_ID: ${{ secrets.OBJ_ID }}
           OBJ_KEY: ${{ secrets.OBJ_KEY }}
           OBJ_BUCKET: ${{ secrets.OBJ_BUCKET }}
-
-
-
