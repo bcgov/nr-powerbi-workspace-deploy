@@ -15,8 +15,8 @@ jobs:
         id: nr-powerbi-workspace-deploy
         uses: bcgov/nr-powerbi-workspace-deploy@main
         env:
-          FILE: 'Deployment Example.pbix'
-          ENV: 'dev'
+          PBI_FILE: 'Deployment Example.pbix'
+          WORKSPACE_ENV: 'dev'
           DOMAIN: 'df'
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}

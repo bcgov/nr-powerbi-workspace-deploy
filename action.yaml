@@ -1,0 +1,9 @@
+name: 'Power BI Deployments for NRM DAP'
+description: 'A method for deploying the .pbix files to the NRM Data Analytics Workspaces'
+author: 'Data Foundations'
+runs:
+   using: 'docker'
+   image: 'Dockerfile'
+branding:
+   icon: 'file-plus'
+   color: 'blue'
