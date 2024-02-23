@@ -1,13 +1,9 @@
-FROM python:alpine
+FROM python
 
-RUN deps='gcc python3-dev musl-dev' \
-    && apk update \
-    && apk add --no-cache libpq \
-    && apk add --virtual temp1 --no-cache $deps \
-    && pip install boto3 \
-    && pip install requests \
-    && apk del temp1
+RUN pip install boto3 requests
 
-ADD *.py .
+COPY app/main.py /usr/bin/main.py
 
-CMD ["python3", "./main.py"]
+COPY app/entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
