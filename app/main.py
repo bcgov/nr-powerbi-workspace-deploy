@@ -3,11 +3,11 @@ import requests
 import boto3
 import json
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 import urllib.parse
 
-timestamp = time.time()
-formatted_timestamp = datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
+timestamp = datetime.today() - timedelta(hours=8)
+formatted_timestamp = timestamp.strftime("%Y-%m-%d %H:%M:%S")
 
 def check_api_response(response):
     if response.status_code not in [200, 201, 202, 204]:
@@ -118,10 +118,6 @@ def main():
         obj_key = os.environ.get("OBJ_KEY")
         obj_url= 'https://nrs.objectstore.gov.bc.ca'
 
-        # S3 Keys
-        s3key_file = f'nr_powerbi_workspace_deploy/{env}/{domain}/{file}'
-        s3key_users = f'nr_powerbi_workspace_deploy/{env}/{domain}/users.txt'
-
         # IDs for BCGov Azure Tenant and NRM Workspaces
         tenant_id = '6fdb5200-3d0d-4a8a-b036-d3685e359adc'
         if env == 'dev':
@@ -134,6 +130,7 @@ def main():
             raise ValueError("Invalid environment specified")
 
         # Load PBI file from S3
+        s3key_file = f'nr_powerbi_workspace_deploy/{env}/{domain}/{file}'
         file = load_from_s3(obj_bucket, obj_id, obj_key, obj_url, s3key_file, file)
         print(f'Successfully loaded {file} from S3 bucket')
 
@@ -147,12 +144,14 @@ def main():
 
         # Create record of deployment in 'archive' folder
         s3_key_archive = f'nr_powerbi_workspace_deploy/{env}/{domain}/archive/{display_name} - {formatted_timestamp}.pbix'
+
         archive_to_s3(obj_bucket, obj_id, obj_key, obj_url, file_name, s3_key_archive)
         print(f'Successfully archived {file} in object storage')
 
-        # Grant users access to the report dataset
-        dataset_id = api_get_report_id(token, display_name, workspace_id)
-        api_add_users(token, obj_bucket, obj_id, obj_key, obj_url, s3key_users, dataset_id, workspace_id)
+        # Grant users access
+        # s3key_users = f'nr_powerbi_workspace_deploy/{env}/{domain}/users.txt'
+        # dataset_id = api_get_report_id(token, display_name, workspace_id)
+        # api_add_users(token, obj_bucket, obj_id, obj_key, obj_url, s3key_users, dataset_id, workspace_id)
 
     except Exception as e:
         print(f"Error: {str(e)}")
