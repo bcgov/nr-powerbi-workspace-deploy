@@ -62,6 +62,13 @@ def archive_to_s3(obj_bucket, obj_id, obj_key, obj_url, file_name, s3_key_archiv
         with open(file_name, 'rb') as body_file:
             file_bytes = body_file.read()
         s3_client.put_object(Bucket = obj_bucket, Key=s3_key_archive, Body=file_bytes)
+
+        # Test to compare boto3 session with boto3 client
+        # session = boto3.Session(aws_access_key_id=obj_id, aws_secret_access_key=obj_key)
+        # s3_resource = session.resource('s3', endpoint_url=obj_url)
+        # bucket = s3_resource.Bucket(obj_bucket)
+        # bucket.put_object(Key=s3_key_archive, Body=file_bytes)
+
     except Exception as e:
         raise Exception(f"S3 Error: {str(e)}")
 
