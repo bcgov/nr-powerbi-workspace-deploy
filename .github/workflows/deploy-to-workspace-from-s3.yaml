@@ -1,8 +1,8 @@
 name: S3 to Power BI Workspace
 
 on: 
-  schedule:
-  - cron: 0 * * * *
+  # schedule:
+  # - cron: 0 * * * *
 
 jobs:    
   pull:
