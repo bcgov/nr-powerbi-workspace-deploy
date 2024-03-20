@@ -1,8 +1,6 @@
 name: GitHub to Power BI Workspace
 
 on: 
-    push:
-      branches: [ "main" ]
     pull_request:
       branches: [ "main" ]
 
